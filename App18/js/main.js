@@ -55,6 +55,47 @@
 		// You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
 		// If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
 	};
+    var UI;
+
+    UI = {
+        createEle: (x) => { return document.createElement(x); },
+        myLoad: () => {
+            UI.loadMain();
+        },
+        loadMain: () => {
+            var main = UI.createEle("div"),
+                header = UI.createEle("h1"),
+                section = UI.createEle("div"),
+                footer = UI.createEle("h6");
+
+            footer.innerHTML = "Footer";
+            footer.className = "footer";
+
+            section.innerHTML = "Main Data Section";
+            section.className = "section";
+
+            header.innerHTML = "Header";
+            header.className = "header";
+
+            main.className = "main";
+            main.appendChild(header);
+            main.appendChild(section);
+            main.appendChild(footer);
+
+            dvContain.appendChild(main);
+
+            setTimeout(() => {
+                main.className = "main_full";
+                header.className = "header_full";
+                section.className = "section_full";
+                footer.className = "footer_full";
+            }, 120);
+        }
+    };
+
+    window.onload = () => {
+        UI.myLoad();
+    };
 
 	app.start();
 
